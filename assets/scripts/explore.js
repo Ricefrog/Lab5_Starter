@@ -2,6 +2,11 @@
 
 window.addEventListener('DOMContentLoaded', init);
 
+function test() {
+	console.log("test");
+}
+
 function init() {
-  // TODO
+	console.log("is this thing on?");
+	const selector = document.querySelector("#horn-select");
 }

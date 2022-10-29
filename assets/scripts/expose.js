@@ -33,7 +33,7 @@ function init() {
 
   slider.addEventListener("input", (e) => {
     const volume = e.target.valueAsNumber;
-    //console.log(volume);
+
     if (volume > 66) {
       volumeIcon.setAttribute("src", "assets/icons/volume-level-3.svg");
     } else if (volume > 33) {
@@ -43,5 +43,8 @@ function init() {
     } else {
       volumeIcon.setAttribute("src", "assets/icons/volume-level-0.svg");
     }
+
+
+		hornAudio.volume = volume / 100;
   });
 }

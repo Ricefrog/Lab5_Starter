@@ -17,17 +17,16 @@ function init() {
 			await timer(500);
 			voices = synth.getVoices();
 		}
+		for (let i = 0; i < voices.length; i++) {
+			let voice = voices[i];
+			let option = document.createElement("option");
+			option.textContent = voice.name;
+			option.setAttribute("value", i);
+			select.appendChild(option);
+		}
 		console.log(`Loaded ${voices.length} voice options.`);
 	};
 	initVoicesArray();
-
-	for (let i = 0; i < voices.length; i++) {
-		let voice = voices[i];
-		let option = document.createElement("option");
-		option.textContent = voice.name;
-		option.setAttribute("value", i);
-		select.appendChild(option);
-	}
 
 
 	button.addEventListener("click", () => {

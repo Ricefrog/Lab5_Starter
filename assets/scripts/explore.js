@@ -12,12 +12,14 @@ function init() {
 	const timer = ms => new Promise(res => setTimeout(res, ms));
 
 	let voices = synth.getVoices();
-	async () => {
+	const initVoicesArray = async () => {
 		while(voices.length === 0) {
 			await timer(500);
 			voices = synth.getVoices();
 		}
-	}
+		console.log(`Loaded ${voices.length} voice options.`);
+	};
+	initVoicesArray();
 
 	for (let i = 0; i < voices.length; i++) {
 		let voice = voices[i];

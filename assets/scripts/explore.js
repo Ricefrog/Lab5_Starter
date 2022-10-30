@@ -24,7 +24,7 @@ function init() {
 	for (let i = 0; i < voices.length; i++) {
 		let voice = voices[i];
 		let option = document.createElement("option");
-		option.textContent = voice.lang;
+		option.textContent = voice.name;
 		option.setAttribute("value", i);
 		select.appendChild(option);
 	}

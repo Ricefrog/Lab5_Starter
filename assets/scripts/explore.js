@@ -9,19 +9,23 @@ function init() {
 	const select = document.querySelector("select");
 	const textBox = document.querySelector("textarea");
 	const icon = document.querySelector("img");
+	const timer = ms => new Promise(res => setTimeout(res, ms));
 
-	let voices = [];
-	setTimeout(() => {
-		voices = synth.getVoices();
-		console.log(voices);
-		for (let i = 0; i < voices.length; i++) {
-			let voice = voices[i];
-			let option = document.createElement("option");
-			option.textContent = voice.lang;
-			option.setAttribute("value", i);
-			select.appendChild(option);
+	let voices = synth.getVoices();
+	async () => {
+		while(voices.length === 0) {
+			await timer(500);
+			voices = synth.getVoices();
 		}
-	}, 1000); 
+	}
+
+	for (let i = 0; i < voices.length; i++) {
+		let voice = voices[i];
+		let option = document.createElement("option");
+		option.textContent = voice.lang;
+		option.setAttribute("value", i);
+		select.appendChild(option);
+	}
 
 
 	button.addEventListener("click", () => {
@@ -31,7 +35,6 @@ function init() {
 		icon.setAttribute("src", "assets/images/smiling-open.png");
 
 		utterThis.addEventListener('start', () => {
-			const timer = ms => new Promise(res => setTimeout(res, ms));
 			const iconPromise = new Promise(async (resolve, reject) => {
 				//console.log(synth.speaking);
 				while(synth.speaking) {
